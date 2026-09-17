@@ -28,7 +28,7 @@ export function calculeProgression(apprenant) {
         totalJournees += 1;
         if (apprenant.resultats[day].challengeTermine == true)
             totalChallenge += 1;
-        apprenant.progression = String((exercicesTermines / totalExercices) * 100) + "%";
+        apprenant.progression = String(Math.round((exercicesTermines / totalExercices) * 100)) + "%";
     }
     console.log(`${apprenant.nom + ' ' + apprenant.prenom} a Obtenue un Score de ${apprenant.progression}`)
     console.log(`${totalJournees} journées renseignées, ${totalChallenge} challenges terminés.`)

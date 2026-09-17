@@ -1,4 +1,5 @@
 import {afficherApprenantParID, afficherApprenantParNom, afficherListeApprenant} from "./affichageFunctions.js"
+import { trierParProgression } from "./triFunctions.js";
 import {apprenants} from "./data.js"
 import readline from "node:readline"
 
@@ -67,11 +68,11 @@ function gererChoixUtilisateur(choixUtilisateur) {
             console.log("choix 7")
             break;
         case "8":
-            //trierParProgression(apprenants);
+            trierParProgression(apprenants);
             console.log("choix 8")
             break;
         case "9":
-            //trierParOrdreAlphabétique();
+            trierParOrdreAlphabétique(apprenants);
             console.log("choix 9")
             break;
         case "0":
