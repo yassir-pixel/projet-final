@@ -48,7 +48,7 @@ export function afficherListeApprenant(apprenants) {
         let resultats = apprenants[apprenant].resultats;
         console.log("");
         console.log("           **********************");
-        console.log(`            Apprenant ID : ${apprenants[apprenant].id}`)
+        console.log(`           |> Apprenant ID : ${apprenants[apprenant].id} <|`)
         console.log("           **********************");
         console.log(`Nom : ${apprenants[apprenant].nom}`);
         console.log(`Prenom : ${apprenants[apprenant].prenom}`);
@@ -96,3 +96,4 @@ export function afficherApprenantParNom() {
         }
     })
 }
+

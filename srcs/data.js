@@ -3,7 +3,7 @@ export const apprenants = [
     {
         id: 1,
         nom: "Sara",
-        prenom: "Dev",
+        prenom: "Claude",
         ville: "Nador",
         resultats: [
             {
@@ -25,7 +25,7 @@ export const apprenants = [
     {
         id: 2,
         nom: "Yassine",
-        prenom: "Code",
+        prenom: "Copilot",
         ville: "Oujda",
         resultats: [
             {
@@ -41,7 +41,7 @@ export const apprenants = [
     {
         id: 3,
         nom: "Mehdi",
-        prenom: "Vscode",
+        prenom: "Gemini",
         ville: "Casablanca",
         resultats: [
             {
@@ -69,7 +69,7 @@ export const apprenants = [
     {
         id: 4,
         nom: "Yassmine",
-        prenom: "Nadar",
+        prenom: "Queen",
         ville: "Casablanca",
         resultats: [
             {
@@ -102,3 +102,72 @@ export const apprenants = [
     }
 ];
 
+function jourAndChallengesManquer(){
+    for (let i = 0; i < apprenants.length; i++) {
+        console.log(`${apprenants[i].nom + " " + apprenants[i].prenom}`)
+        for (let j = 1; j <= apprenants[i].resultats[j]; j++) {
+            let challengeTerminer = false;
+            if (apprenants[i].resultats[j].jour == j) {
+                console.log(`Jour : ${apprenants[i].resultats[j].jour} , Presence : ${}`)
+            }
+        }
+    }
+}
+
+export function afficherTableauDeBord() {
+    let nombreTotaleApprenants = apprenants.length;
+    let nombreTotaleExerciceGroupe = 0
+    let nombreTotaleExerciceProposé = 0;
+    let nombreApprenantsSolide = 0;
+    let nombreApprenantsProgression = 0;
+    let nombreApprenantsRenforcer = 0;
+
+    for (let i = 0; i < apprenants.length; i++) {
+        nombreTotaleExerciceProposé += ((apprenants[i].resultats).length * 20)
+        if (apprenants[i].niveau === "Solide")
+           nombreApprenantsSolide += 1;
+        if (apprenants[i].niveau === "En progression")
+           nombreApprenantsProgression += 1;
+        if (apprenants[i].niveau === "À renforcer")
+           nombreApprenantsRenforcer += 1;
+        for (let j = 0; j < (apprenants[i].resultats).length; j++) {
+            nombreTotaleExerciceGroupe += apprenants[i].resultats[j].exercicesTermines
+        }
+    }
+
+    let moyenneProgressionGroupe = String(Math.round((nombreTotaleExerciceGroupe / nombreTotaleExerciceProposé) * 100)) + "%";
+
+    console.log("*********************************************");
+    console.log("**************Tableau De Bord****************");
+    console.log("*********************************************");
+
+    console.log(`Nombre Totale D'apprenants => ${nombreTotaleApprenants}`);
+    console.log(`Progression Moyenne Du Groupe => ${moyenneProgressionGroupe}`);
+    console.log(`Apprenants Solide => ${nombreApprenantsSolide}`);
+    console.log(`Apprenants En Progression => ${nombreApprenantsProgression}`);
+    console.log(`Apprenants À renforcer => ${nombreApprenantsRenforcer}`);
+
+    //let apprenantsDistingée = [{"Solide": [], "En progression": [], "À renforcer": []}]
+    // let apprenantsDistingée2 = [{"Solide": {nom: "", prenom: "", pourcentage: "", id: 0}, "En progression": {nom: "", prenom: "", pourcentage: "", id: 0}, "À renforcer": {nom: "", prenom: "", pourcentage: "", id: 0}}]
+
+    // for (let i = 0; i < apprenants.length; i++) {
+    //     if (apprenants[i].niveau === "Solide") {
+    //         apprenantsDistingée[0].Solide.push(apprenants[i].nom + " " + apprenants[i].prenom);
+    //     }
+    //     if (apprenants[i].niveau == "En progression") {
+    //         apprenantsDistingée[0]["En progression"].push(apprenants[i].nom + " " + apprenants[i].prenom)
+    //     }
+    //     if (apprenants[i].niveau == "À renforcer") {
+    //         apprenantsDistingée[0]["À renforcer"].push(apprenants[i].nom + " " + apprenants[i].prenom)
+    //     }
+    // }
+
+
+    jourAndChallengesManquer();
+
+
+
+
+}
+
+afficherTableauDeBord()
