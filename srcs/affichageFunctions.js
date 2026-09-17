@@ -8,7 +8,7 @@ export function afficherApprenantParID() {
         const choix = Number(val.trim());
         const apprenant = apprenants.find(({ id }) => id === choix);
 
-        if ( val.trim() === "" || !Number.isInteger(choix) || !isValidId(choix) || !apprenant ) {
+        if ( val.trim() === "" || !isValidId(choix) || !apprenant ) {
             console.log("ID apprenant Inexistant !");
             afficherMenuDeSelection();
             return;
@@ -73,7 +73,7 @@ export function afficherApprenantParNom() {
     rl.question(`Veuillez Saisir Un Nom : `, (val) => {
         const choix = val.trim();
 
-        if ( val.trim() === "" || !isValidNomPrenom(choix)) {
+        if ( val.trim() === "" || !isValidNomPrenom(choix, 'N')) {
             afficherMenuDeSelection();
             return;
         } else {
@@ -81,7 +81,7 @@ export function afficherApprenantParNom() {
             rl.question(`Veuillez Saisir Un Prenom : `, (val) => {
                 const choix = val.trim();
 
-                if ( val.trim() === "" || !isValidNomPrenom(choix)) {
+                if ( val.trim() === "" || !isValidNomPrenom(choix, 'P')) {
                     afficherMenuDeSelection();
                     return;
                 } else {

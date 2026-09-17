@@ -67,7 +67,7 @@ function gererChoixUtilisateur(choixUtilisateur) {
             console.log("choix 7")
             break;
         case "8":
-            //trierParProgression();
+            //trierParProgression(apprenants);
             console.log("choix 8")
             break;
         case "9":
