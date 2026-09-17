@@ -1,13 +1,14 @@
-const readline = require('readline');
-const apprenants = require('./data');
+import {afficherApprenantParID, afficherApprenantParNom, afficherListeApprenant} from "./affichageFunctions.js"
+import {apprenants} from "./data.js"
+import readline from "node:readline"
 
-const rl = readline.createInterface({
+export const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
 });
 
 
-function afficherMenuDeSelection() {
+export function afficherMenuDeSelection() {
     console.log(`SAS PROGRESS CONSOLE\n
         1. Afficher le tableau de bord
         2. Afficher la liste des apprenants
@@ -34,81 +35,6 @@ function afficherMenuDeSelection() {
         }
     })
 }
-
-
-
-function afficherListeApprenant(apprenants) {
-    console.log("*********************************************");
-    console.log("**************Listes Apprenants**************");
-    console.log("*********************************************");
-    for (let apprenant in apprenants) {
-        // let resultats = resultatApprenant(apprenants[apprenant].resultats);
-        let resultats = apprenants[apprenant].resultats;
-        console.log("");
-        console.log("           **********************");
-        console.log(`            Apprenant Numéro : ${apprenants[apprenant].id}`)
-        console.log("           **********************");
-        console.log(`Nom : ${apprenants[apprenant].nom}`);
-        console.log(`Prenom : ${apprenants[apprenant].prenom}`);
-        if (resultats.length == 0) {
-            console.log(`Resultats : aucune jouréé enregistée pour cette apprenant`);
-        } else {
-            console.log(`Resultats :`)
-            for (let i = 0; i < resultats.length; i++) {
-                console.log(`    -----------[Resultat Jour ${resultats[i].jour}]-----------`)
-                console.log(`         [Total Exercices] => ${resultats[i].totalExercices}`);
-                console.log(`         [Exercices Termines] => ${resultats[i].exercicesTermines}`);
-                console.log(`         [Challenge Termines] => ${resultats[i].challengeTermine}`);
-                console.log(`    ---------------------------------------`)
-            }
-        }
-    }
-}
-
-function isValidId(choix) {
-    return true;
-}
-
-function afficherApprenantParID() {
-    rl.question(`Veuillez Selectionner L'ID de L'apprenant `, (val) => {
-        const choix = Number(val.trim());
-
-        if ( val.trim() === "" || !Number.isInteger(choix) || !isValidId(choix) ) {
-            console.log("ID apprenant Inexistant !");
-            afficherMenuDeSelection();
-            return;
-        } else {
-                // affichage apprenant doit etre ici
-            let resultats = apprenants[choix - 1].resultats;
-            console.log("");
-            console.log("           **********************");
-            console.log(`            Apprenant Numéro : ${apprenants[choix - 1].id}`)
-            console.log("           **********************");
-            console.log(`Nom : ${apprenants[choix - 1].nom}`);
-            console.log(`Prenom : ${apprenants[choix - 1].prenom}`);
-            if (resultats.length == 0) {
-                console.log(`Resultats : aucune jouréé enregistée pour cette apprenant`);
-            } else {
-                console.log(`Resultats :`)
-                for (let i = 0; i < resultats.length; i++) {
-                    console.log(`    -----------[Resultat Jour ${resultats[i].jour}]-----------`)
-                    console.log(`         [Total Exercices] => ${resultats[i].totalExercices}`);
-                    console.log(`         [Exercices Termines] => ${resultats[i].exercicesTermines}`);
-                    console.log(`         [Challenge Termines] => ${resultats[i].challengeTermine}`);
-                    console.log(`    ---------------------------------------`)
-                }
-            }
-        }
-        afficherMenuDeSelection();
-    })
-        
-}
-
-function afficherApprenantParNom() {
-    
-}
-
-
 
 function gererChoixUtilisateur(choixUtilisateur) {
 
@@ -160,5 +86,6 @@ function gererChoixUtilisateur(choixUtilisateur) {
 afficherMenuDeSelection()
 
 rl.on('close', () => {
+    console.log("closing the program,.....!");
   process.exit(0);
 });

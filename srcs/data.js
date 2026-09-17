@@ -1,4 +1,4 @@
-const apprenants = [
+export const apprenants = [
     {
         id: 1,
         nom: "Sara",
@@ -17,7 +17,9 @@ const apprenants = [
                 totalExercices: 20,
                 challengeTermine: false
             }
-        ]
+        ],
+        progression: "80%",
+        niveau: "Solide"
     },
     {
         id: 2,
@@ -31,8 +33,8 @@ const apprenants = [
                 totalExercices: 20,
                 challengeTermine: false
             }
-        ]
+        ],
+        progression: "60%",
+        niveau: "En progression"
     }
 ];
-
-module.exports = apprenants
