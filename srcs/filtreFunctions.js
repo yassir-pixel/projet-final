@@ -1,6 +1,6 @@
 import {rl, afficherMenuDeSelection} from "./main.js"
 import { apprenants } from "./data.js";
-import { isValidId } from "./functions.js";
+import { isValidId, terminerAvecErreur } from "./functions.js";
  
 
 
@@ -26,7 +26,7 @@ export function filtrerParNiveau(){
             const choix = Number(val.trim());
     
             if ( val.trim() === "" || choix < 1 && choix > 3 || !isValidId(choix) || !apprenants ) {
-                console.log("Categorie d'apprenant Inexistante !");
+                terminerAvecErreur("Categorie d'apprenant Inexistante !");
                 afficherMenuDeSelection();
                 return;
             } else {

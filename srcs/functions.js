@@ -1,3 +1,7 @@
+export function terminerAvecErreur(message) {
+    console.log(message);
+}
+
 export function isValidNomPrenom(choix, type) {
     if (choix.length < 3 && type === 'N') {
         console.log("Saisissez 3 caractére minimum")
@@ -28,8 +32,13 @@ export function calculeProgression(apprenant) {
         totalJournees += 1;
         if (apprenant.resultats[day].challengeTermine == true)
             totalChallenge += 1;
-        apprenant.progression = String(Math.round((exercicesTermines / totalExercices) * 100)) + "%";
     }
+
+    if (totalExercices === 0)
+        apprenant.progression = "0%";
+    else
+        apprenant.progression = String(Math.round((exercicesTermines / totalExercices) * 100)) + "%";
+
     // console.log(`${apprenant.nom + ' ' + apprenant.prenom} a Obtenue un Score de ${apprenant.progression}`)
     // console.log(`${totalJournees} journées renseignées, ${totalChallenge} challenges terminés.`)
 }

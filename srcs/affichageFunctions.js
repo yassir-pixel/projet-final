@@ -1,5 +1,5 @@
 import {rl} from "./main.js" 
-import {isValidId} from "./functions.js"
+import {isValidId, terminerAvecErreur} from "./functions.js"
 import {apprenants} from "./data.js"
 import {afficherMenuDeSelection} from "./main.js"
 
@@ -7,22 +7,28 @@ export function afficherApprenantParID(apprenants) {
     rl.question(`Veuillez Selectionner L'ID de L'apprenant `, (val) => {
         let choix = Number(val.trim());
 
-        if ( val.trim() === "" || !isValidId(choix) || !apprenants ) {
-            console.log("ID apprenant Inexistant !");
+        if (val.trim() === "" || !isValidId(choix) || !Array.isArray(apprenants)) {
+            terminerAvecErreur("ID apprenant Inexistant !");
             afficherMenuDeSelection();
             return;
-        } else {
-                // affichage apprenant doit etre ici
-            choix = choix - 1;
-            let resultats = apprenants[choix].resultats;
+        }
+
+        const apprenant = apprenants.find(element => element.id === choix);
+        if (apprenant === undefined) {
+            terminerAvecErreur("ID apprenant Inexistant !");
+            afficherMenuDeSelection();
+            return;
+        }
+
+        const resultats = apprenant.resultats;
             console.log("");
             console.log("           **********************");
-            console.log(`            Apprenant ID : ${apprenants[choix].id}`)
+            console.log(`            Apprenant ID : ${apprenant.id}`)
             console.log("           **********************");
-            console.log(`Nom : ${apprenants[choix].nom}`);
-            console.log(`Prenom : ${apprenants[choix].prenom}`);
-            console.log(`Progression : ${apprenants[choix].progression}`);
-            console.log(`Niveau : ${apprenants[choix].niveau}`);
+            console.log(`Nom : ${apprenant.nom}`);
+            console.log(`Prenom : ${apprenant.prenom}`);
+            console.log(`Progression : ${apprenant.progression}`);
+            console.log(`Niveau : ${apprenant.niveau}`);
             if (resultats.length == 0) {
                 console.log(`Resultats : aucune jouréé enregistée pour cette apprenant`);
             } else {
@@ -35,7 +41,6 @@ export function afficherApprenantParID(apprenants) {
                     console.log(`    ---------------------------------------`)
                 }
             }
-        }
         afficherMenuDeSelection();
     })
         

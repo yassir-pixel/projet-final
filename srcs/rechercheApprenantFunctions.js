@@ -1,4 +1,5 @@
 import { afficherMenuDeSelection, rl } from "./main.js";
+import { terminerAvecErreur } from "./functions.js";
 
 export function normaliserTexteRecherche(valeur) {
     if (typeof valeur !== "string")
@@ -68,7 +69,7 @@ export function afficherApprenantParNom(apprenants) {
         const rechercheNormalisee = normaliserTexteRecherche(recherche);
 
         if (!estRechercheNomValide(rechercheNormalisee)) {
-            console.log("Recherche invalide : saisissez au moins une lettre.");
+            terminerAvecErreur("Recherche invalide : saisissez au moins une lettre.");
             afficherMenuDeSelection();
             return;
         }

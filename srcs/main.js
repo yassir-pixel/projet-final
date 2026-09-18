@@ -1,9 +1,10 @@
 import {afficherApprenantParID, afficherListeApprenant, afficherTableauDeBord} from "./affichageFunctions.js"
 import { afficherApprenantParNom } from "./rechercheApprenantFunctions.js"
+import { ajouterApprenant } from "./ajouterApprenantFunctions.js"
 import { trierParProgression, trierParOrdreAlphabétique } from "./triFunctions.js";
 import { filtrerParNiveau } from "./filtreFunctions.js";
 import {apprenants} from "./data.js"
-import { calculeProgression, definirPalier } from "./functions.js";
+import { calculeProgression, definirPalier, terminerAvecErreur } from "./functions.js";
 import readline from "node:readline"
 
 export const rl = readline.createInterface({
@@ -30,12 +31,12 @@ export function afficherMenuDeSelection() {
         const choix = Number(val.trim());
 
         if ( val.trim() === "" || !Number.isInteger(choix) || choix < 0 || choix > 9 ) {
-            console.log("Choix invalide.");
+            terminerAvecErreur("Choix invalide.");
             afficherMenuDeSelection();
             return;
         }
         gererChoixUtilisateur(choix);
-        if (choix !== 0 && choix != 4) {
+        if (choix !== 0 && choix !== 3 && choix !== 4) {
             afficherMenuDeSelection();
         }
     })
@@ -52,8 +53,7 @@ function gererChoixUtilisateur(choixUtilisateur) {
             afficherListeApprenant(apprenants);
             break;
         case "3":
-            //ajouterApprenant(apprenants);
-            console.log("choix 3")
+            ajouterApprenant(apprenants);
             break;
         case "4":
             afficherApprenantParID(apprenants);
