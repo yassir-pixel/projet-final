@@ -1,5 +1,5 @@
 import {rl} from "./main.js" 
-import {isValidNomPrenom, isValidId} from "./functions.js"
+import {isValidId} from "./functions.js"
 import {apprenants} from "./data.js"
 import {afficherMenuDeSelection} from "./main.js"
 
@@ -70,36 +70,6 @@ export function afficherListeApprenant(apprenants) {
             }
         }
     }
-}
-
-export function afficherApprenantParNom() {
-    let nom = "";
-    let prenom = "";
-    rl.question(`Veuillez Saisir Un Nom : `, (val) => {
-        const choix = val.trim();
-
-        if ( val.trim() === "" || !isValidNomPrenom(choix, 'N')) {
-            afficherMenuDeSelection();
-            return;
-        } else {
-            nom += choix;
-            rl.question(`Veuillez Saisir Un Prenom : `, (val) => {
-                const choix = val.trim();
-
-                if ( val.trim() === "" || !isValidNomPrenom(choix, 'P')) {
-                    afficherMenuDeSelection();
-                    return;
-                } else {
-                    prenom += choix;
-                    // logic goes here
-                    console.log("No name Errors No prenom Errors");
-                    console.log(`Nom => ${nom}, Prenom => ${prenom}`);
-                    afficherMenuDeSelection();
-                }
-            })
-            afficherMenuDeSelection();
-        }
-    })
 }
 
 export function listAvecPourcentageEtResultatDesJournee(apprenants) {

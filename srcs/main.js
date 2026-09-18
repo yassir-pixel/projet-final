@@ -1,4 +1,5 @@
-import {afficherApprenantParID, afficherApprenantParNom, afficherListeApprenant, afficherTableauDeBord} from "./affichageFunctions.js"
+import {afficherApprenantParID, afficherListeApprenant, afficherTableauDeBord} from "./affichageFunctions.js"
+import { afficherApprenantParNom } from "./rechercheApprenantFunctions.js"
 import { trierParProgression, trierParOrdreAlphabétique } from "./triFunctions.js";
 import { filtrerParNiveau } from "./filtreFunctions.js";
 import {apprenants} from "./data.js"
@@ -51,7 +52,7 @@ function gererChoixUtilisateur(choixUtilisateur) {
             afficherListeApprenant(apprenants);
             break;
         case "3":
-            //ajouterApprenant();
+            //ajouterApprenant(apprenants);
             console.log("choix 3")
             break;
         case "4":
@@ -62,7 +63,7 @@ function gererChoixUtilisateur(choixUtilisateur) {
             console.log("choix 5")
             break;
         case "6":
-            //afficherApprenantParNom();
+            afficherApprenantParNom(apprenants);
             break;
         case "7":
             filtrerParNiveau();
