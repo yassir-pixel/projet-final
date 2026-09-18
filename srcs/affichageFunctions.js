@@ -82,7 +82,7 @@ export function listAvecPourcentageEtResultatDesJournee(apprenants) {
 
     for (let i = 0; i < list.length; i++) {
         for (let j = 0; j < list.length - i - 1; j++) {
-            if (Number((list[j].progression).slice(0, ((list[j].progression).length - 1)) ) > Number((list[j + 1].progression).slice(0, ((list[j + 1].progression).length - 1)) )) {
+            if (Number((list[j].progression).slice(0, ((list[j].progression).length - 1)) ) < Number((list[j + 1].progression).slice(0, ((list[j + 1].progression).length - 1)) )) {
                 let tmp = list[j];
                 list[j] = list[j + 1]
                 list[j + 1] = tmp;
@@ -97,8 +97,14 @@ export function listAvecPourcentageEtResultatDesJournee(apprenants) {
 
             if (resultatDuJour === undefined)
                 console.log(`Jour ${j} : Journée non renseignée`);
-            else
-                console.log(`Jour ${j} : ${resultatDuJour.exercicesTermines}/${resultatDuJour.totalExercices} exercices terminés, challenge terminé : ${resultatDuJour.challengeTermine}`);
+            else {
+                let challenge = "";
+                if (resultatDuJour.challengeTermine)
+                    challenge = "Challenge terminé";
+                else
+                    challenge = "Challenge non terminé";
+                console.log(`Jour ${j} : ${resultatDuJour.exercicesTermines}/${resultatDuJour.totalExercices} exercices terminés, ${challenge}`);
+            }
         }
         console.log("*****************************************************************");
         console.log("*****************************************************************");
@@ -117,7 +123,6 @@ export function afficherTableauDeBord() {
     let nombreApprenantsRenforcer = 0;
 
     for (let i = 0; i < apprenants.length; i++) {
-        nombreTotaleExerciceProposé += ((apprenants[i].resultats).length * 20)
         if (apprenants[i].niveau === "Solide")
            nombreApprenantsSolide += 1;
         if (apprenants[i].niveau === "En progression")
@@ -125,11 +130,16 @@ export function afficherTableauDeBord() {
         if (apprenants[i].niveau === "À renforcer")
            nombreApprenantsRenforcer += 1;
         for (let j = 0; j < (apprenants[i].resultats).length; j++) {
-            nombreTotaleExerciceGroupe += apprenants[i].resultats[j].exercicesTermines
+            nombreTotaleExerciceGroupe += apprenants[i].resultats[j].exercicesTermines;
+            nombreTotaleExerciceProposé += apprenants[i].resultats[j].totalExercices;
         }
     }
 
-    let moyenneProgressionGroupe = String(Math.round((nombreTotaleExerciceGroupe / nombreTotaleExerciceProposé) * 100)) + "%";
+    let moyenneProgressionGroupe = "";
+    if (nombreTotaleExerciceProposé === 0)
+        moyenneProgressionGroupe = "0%";
+    else
+        moyenneProgressionGroupe = String(Math.round((nombreTotaleExerciceGroupe / nombreTotaleExerciceProposé) * 100)) + "%";
 
     console.log("*********************************************");
     console.log("**************Tableau De Bord****************");
