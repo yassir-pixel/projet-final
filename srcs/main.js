@@ -2,6 +2,7 @@ import {afficherApprenantParID, afficherApprenantParNom, afficherListeApprenant}
 import { trierParProgression, trierParOrdreAlphabétique } from "./triFunctions.js";
 import { filtrerParNiveau } from "./filtreFunctions.js";
 import {apprenants} from "./data.js"
+import { calculeProgression, definirPalier } from "./functions.js";
 import readline from "node:readline"
 
 export const rl = readline.createInterface({
@@ -11,7 +12,8 @@ export const rl = readline.createInterface({
 
 
 export function afficherMenuDeSelection() {
-    console.log(`SAS PROGRESS CONSOLE\n
+
+    console.log(`   SAS PROGRESS CONSOLE\n
         1. Afficher le tableau de bord
         2. Afficher la liste des apprenants
         3. Ajouter un apprenant
@@ -53,7 +55,7 @@ function gererChoixUtilisateur(choixUtilisateur) {
             console.log("choix 3")
             break;
         case "4":
-            afficherApprenantParID();
+            afficherApprenantParID(apprenants);
             break;
         case "5":
             //enregistrerResultat();
@@ -79,6 +81,12 @@ function gererChoixUtilisateur(choixUtilisateur) {
     }
 }
 
+console.log(`Programme Lancer Calcule Initial De La Progression ...!`);
+console.log(`Definition du Palier Des Apprenants ...!`);
+for (let apprenant in apprenants) {
+    calculeProgression(apprenants[apprenant]);
+    definirPalier(apprenants[apprenant]);        
+}
 afficherMenuDeSelection()
 
 rl.on('close', () => {

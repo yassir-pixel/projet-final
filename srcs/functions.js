@@ -14,7 +14,7 @@ export function isValidNomPrenom(choix, type) {
 
 // check has more cases i guess
 export function isValidId(choix) {
-    return Number.isInteger(choix) && choix > 0 ;
+    return Number.isInteger(choix) && choix >= 0 ;
 }
 
 export function calculeProgression(apprenant) {
@@ -30,8 +30,8 @@ export function calculeProgression(apprenant) {
             totalChallenge += 1;
         apprenant.progression = String(Math.round((exercicesTermines / totalExercices) * 100)) + "%";
     }
-    console.log(`${apprenant.nom + ' ' + apprenant.prenom} a Obtenue un Score de ${apprenant.progression}`)
-    console.log(`${totalJournees} journées renseignées, ${totalChallenge} challenges terminés.`)
+    // console.log(`${apprenant.nom + ' ' + apprenant.prenom} a Obtenue un Score de ${apprenant.progression}`)
+    // console.log(`${totalJournees} journées renseignées, ${totalChallenge} challenges terminés.`)
 }
 
 export function definirPalier(apprenant) {

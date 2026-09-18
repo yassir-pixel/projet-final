@@ -3,24 +3,26 @@ import {isValidNomPrenom, isValidId} from "./functions.js"
 import {apprenants} from "./data.js"
 import {afficherMenuDeSelection} from "./main.js"
 
-export function afficherApprenantParID() {
+export function afficherApprenantParID(apprenants) {
     rl.question(`Veuillez Selectionner L'ID de L'apprenant `, (val) => {
-        const choix = Number(val.trim());
-        const apprenant = apprenants.find(({ id }) => id === choix);
+        let choix = Number(val.trim());
 
-        if ( val.trim() === "" || !isValidId(choix) || !apprenant ) {
+        if ( val.trim() === "" || !isValidId(choix) || !apprenants ) {
             console.log("ID apprenant Inexistant !");
             afficherMenuDeSelection();
             return;
         } else {
                 // affichage apprenant doit etre ici
-            let resultats = apprenant.resultats;
+            choix = choix - 1;
+            let resultats = apprenants[choix].resultats;
             console.log("");
             console.log("           **********************");
-            console.log(`            Apprenant ID : ${apprenant.id}`)
+            console.log(`            Apprenant ID : ${apprenants[choix].id}`)
             console.log("           **********************");
-            console.log(`Nom : ${apprenant.nom}`);
-            console.log(`Prenom : ${apprenant.prenom}`);
+            console.log(`Nom : ${apprenants[choix].nom}`);
+            console.log(`Prenom : ${apprenants[choix].prenom}`);
+            console.log(`Progression : ${apprenants[choix].progression}`);
+            console.log(`Niveau : ${apprenants[choix].niveau}`);
             if (resultats.length == 0) {
                 console.log(`Resultats : aucune jouréé enregistée pour cette apprenant`);
             } else {
@@ -52,6 +54,9 @@ export function afficherListeApprenant(apprenants) {
         console.log("           **********************");
         console.log(`Nom : ${apprenants[apprenant].nom}`);
         console.log(`Prenom : ${apprenants[apprenant].prenom}`);
+        console.log(`Progression : ${apprenants[apprenant].progression}`);
+        console.log(`Niveau : ${apprenants[apprenant].niveau}`);
+
         if (resultats.length == 0) {
             console.log(`Resultats : aucune jouréé enregistée pour cette apprenant`);
         } else {
@@ -156,20 +161,5 @@ export function afficherTableauDeBord() {
     console.log(`Apprenants Solide => ${nombreApprenantsSolide}`);
     console.log(`Apprenants En Progression => ${nombreApprenantsProgression}`);
     console.log(`Apprenants À renforcer => ${nombreApprenantsRenforcer}`);
-
-    //let apprenantsDistingée = [{"Solide": [], "En progression": [], "À renforcer": []}]
-    // let apprenantsDistingée2 = [{"Solide": {nom: "", prenom: "", pourcentage: "", id: 0}, "En progression": {nom: "", prenom: "", pourcentage: "", id: 0}, "À renforcer": {nom: "", prenom: "", pourcentage: "", id: 0}}]
-
-    // for (let i = 0; i < apprenants.length; i++) {
-    //     if (apprenants[i].niveau === "Solide") {
-    //         apprenantsDistingée[0].Solide.push(apprenants[i].nom + " " + apprenants[i].prenom);
-    //     }
-    //     if (apprenants[i].niveau == "En progression") {
-    //         apprenantsDistingée[0]["En progression"].push(apprenants[i].nom + " " + apprenants[i].prenom)
-    //     }
-    //     if (apprenants[i].niveau == "À renforcer") {
-    //         apprenantsDistingée[0]["À renforcer"].push(apprenants[i].nom + " " + apprenants[i].prenom)
-    //     }
-    // }
 
 }

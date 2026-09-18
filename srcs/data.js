@@ -18,9 +18,7 @@ export const apprenants = [
                 totalExercices: 20,
                 challengeTermine: false
             }
-        ],
-        progression: "80%",
-        niveau: "Solide"
+        ]
     },
     {
         id: 2,
@@ -35,8 +33,6 @@ export const apprenants = [
                 challengeTermine: false
             }
         ],
-        progression: "60%",
-        niveau: "En progression"
     },
     {
         id: 3,
@@ -62,9 +58,7 @@ export const apprenants = [
                 totalExercices: 20,
                 challengeTermine: true
             }
-        ],
-        progression: "58%",
-        niveau: "En progression"
+        ]
     },
     {
         id: 4,
@@ -96,9 +90,7 @@ export const apprenants = [
                 totalExercices: 20,
                 challengeTermine: false
             }
-        ],
-        progression: "69%",
-        niveau: "En progression"
+        ]
     }
 ];
 
