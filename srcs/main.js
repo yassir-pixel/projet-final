@@ -1,6 +1,7 @@
 import {afficherApprenantParID, afficherListeApprenant, afficherTableauDeBord} from "./affichageFunctions.js"
 import { afficherApprenantParNom } from "./rechercheApprenantFunctions.js"
 import { ajouterApprenant } from "./ajouterApprenantFunctions.js"
+import { enregistrerResultat } from "./enregistrerResultatFunctions.js"
 import { trierParProgression, trierParOrdreAlphabétique } from "./triFunctions.js";
 import { filtrerParNiveau } from "./filtreFunctions.js";
 import {apprenants} from "./data.js"
@@ -36,7 +37,7 @@ export function afficherMenuDeSelection() {
             return;
         }
         gererChoixUtilisateur(choix);
-        if (choix !== 0 && choix !== 3 && choix !== 4 && choix !== 7) {
+        if (choix !== 0 && choix !== 3 && choix !== 4 && choix !== 5 && choix !== 6 && choix !== 7) {
             afficherMenuDeSelection();
         }
     })
@@ -59,8 +60,7 @@ function gererChoixUtilisateur(choixUtilisateur) {
             afficherApprenantParID(apprenants);
             break;
         case "5":
-            //enregistrerResultat();
-            console.log("choix 5")
+            enregistrerResultat(apprenants);
             break;
         case "6":
             afficherApprenantParNom(apprenants);
