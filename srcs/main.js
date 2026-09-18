@@ -1,5 +1,5 @@
 import {afficherApprenantParID, afficherApprenantParNom, afficherListeApprenant} from "./affichageFunctions.js"
-import { trierParProgression } from "./triFunctions.js";
+import { trierParProgression, trierParOrdreAlphabétique } from "./triFunctions.js";
 import { filtrerParNiveau } from "./filtreFunctions.js";
 import {apprenants} from "./data.js"
 import readline from "node:readline"
@@ -43,8 +43,7 @@ function gererChoixUtilisateur(choixUtilisateur) {
     let choix = String(choixUtilisateur);
     switch (choix) {
         case "1":
-            afficherTableauDeBord();
-            console.log("choix 1")
+            //afficherTableauDeBord();
             break;
         case "2":
             afficherListeApprenant(apprenants);
@@ -62,22 +61,17 @@ function gererChoixUtilisateur(choixUtilisateur) {
             break;
         case "6":
             //afficherApprenantParNom();
-            console.log("choix 6")
             break;
         case "7":
             filtrerParNiveau();
-            console.log("choix 7")
             break;
         case "8":
             trierParProgression(apprenants);
-            console.log("choix 8")
             break;
         case "9":
-            //trierParOrdreAlphabétique(apprenants);
-            console.log("choix 9")
+            trierParOrdreAlphabétique(apprenants);
             break;
         case "0":
-            console.log("choix 0")
             rl.close();
             break;
         default:

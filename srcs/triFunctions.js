@@ -1,8 +1,21 @@
-import {apprenants} from "./data.js"
-import { afficherListeApprenant } from "./affichageFunctions.js";
-
 export function trierParOrdreAlphabétique(apprenants) {
-    
+    let n = apprenants.length;
+
+    for (let i = 0; i < n - 1; i++) {
+        let swapped = false;
+        for (let j = 0; j < n - 1 - i; j++) {
+            const nomA = apprenants[j].nom.toLowerCase();
+            const nomB = apprenants[j + 1].nom.toLowerCase();
+            if (nomA > nomB) {
+                const temp = apprenants[j];
+                apprenants[j] = apprenants[j + 1];
+                apprenants[j + 1] = temp;
+                swapped = true;
+            }
+        }
+        if (!swapped)
+            break;
+    }
 }
 
 export function trierParProgression(apprenants) {
