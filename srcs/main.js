@@ -1,4 +1,4 @@
-import {afficherApprenantParID, afficherApprenantParNom, afficherListeApprenant} from "./affichageFunctions.js"
+import {afficherApprenantParID, afficherApprenantParNom, afficherListeApprenant, afficherTableauDeBord} from "./affichageFunctions.js"
 import { trierParProgression, trierParOrdreAlphabétique } from "./triFunctions.js";
 import { filtrerParNiveau } from "./filtreFunctions.js";
 import {apprenants} from "./data.js"
@@ -45,7 +45,7 @@ function gererChoixUtilisateur(choixUtilisateur) {
     let choix = String(choixUtilisateur);
     switch (choix) {
         case "1":
-            //afficherTableauDeBord();
+            afficherTableauDeBord();
             break;
         case "2":
             afficherListeApprenant(apprenants);

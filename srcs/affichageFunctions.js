@@ -102,7 +102,6 @@ export function afficherApprenantParNom() {
     })
 }
 
-// still need to fix the display of the days where the student was absent
 export function listAvecPourcentageEtResultatDesJournee(apprenants) {
     let list = structuredClone(apprenants);
 
@@ -116,15 +115,20 @@ export function listAvecPourcentageEtResultatDesJournee(apprenants) {
         }
     }
     for (let i = 0; i < list.length; i++) {
-        console.log(`Nom : ${list[i].nom} Prenom : ${list[i].prenom}`);
+        console.log(`Nom : ${list[i].nom}       Prenom : ${list[i].prenom}`);
         console.log(`Progression : ${list[i].progression}`)
         for (let j = 1; j <= 7; j++) {
-            if (list[i].resultats[j - 1].jour === undefined)
-                console.log(`Jour ${j}`);
+            let resultatDuJour = list[i].resultats.find(resultat => resultat.jour === j);
+
+            if (resultatDuJour === undefined)
+                console.log(`Jour ${j} : Journée non renseignée`);
             else
-                console.log(`Jour ${list[i].resultats[j - 1].jour}`);
+                console.log(`Jour ${j} : ${resultatDuJour.exercicesTermines}/${resultatDuJour.totalExercices} exercices terminés, challenge terminé : ${resultatDuJour.challengeTermine}`);
         }
+        console.log("*****************************************************************");
+        console.log("*****************************************************************");
     }
+    
 }
 
 // still need to fix the display of the days where the student was absent
@@ -162,4 +166,8 @@ export function afficherTableauDeBord() {
     console.log(`Apprenants En Progression => ${nombreApprenantsProgression}`);
     console.log(`Apprenants À renforcer => ${nombreApprenantsRenforcer}`);
 
+    console.log("*********************************************");
+    console.log("**************Résultats Des Journées*********");
+    console.log("*********************************************");
+    listAvecPourcentageEtResultatDesJournee(apprenants)
 }
