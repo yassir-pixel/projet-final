@@ -91,6 +91,26 @@ export const apprenants = [
                 challengeTermine: false
             }
         ]
+    },
+    {
+        id: 9,
+        nom: "Jean",
+        prenom: "Gpt",
+        ville: "Fes",
+        resultats: [
+            {
+                jour: 1,
+                exercicesTermines: 0,
+                totalExercices: 20,
+                challengeTermine: true
+            },
+            {
+                jour: 2,
+                exercicesTermines: 0,
+                totalExercices: 20,
+                challengeTermine: false
+            }
+        ]
     }
 ];
 

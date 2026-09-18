@@ -6,8 +6,18 @@ import { isValidId } from "./functions.js";
 
 export function afficherListeApprenantParCategorie(apprenants, choix){
     
+    let palierChoisie = "";
+
+    if (choix == 1) {
+        palierChoisie = "Solide";
+    } else if (choix == 2) {
+        palierChoisie = "En progression";
+    } else {
+        palierChoisie = "À renforcer";
+    }
     for (let i = 0; i < apprenants.length; i++) {
-        console.log(`ID : ${apprenants[i].id} , Nom : ${apprenants[i].nom} , Prenom : ${apprenants[i].prenom} , Pourcentage : ${apprenants[i].progression}`)
+        if ((apprenants[i].niveau).includes(palierChoisie))
+            console.log(`ID : ${apprenants[i].id} , Nom : ${apprenants[i].nom} , Prenom : ${apprenants[i].prenom} , Pourcentage : ${apprenants[i].progression}`)
     }
 }
 
