@@ -36,7 +36,7 @@ export function afficherMenuDeSelection() {
             return;
         }
         gererChoixUtilisateur(choix);
-        if (choix !== 0 && choix !== 3 && choix !== 4) {
+        if (choix !== 0 && choix !== 3 && choix !== 4 && choix !== 7) {
             afficherMenuDeSelection();
         }
     })
